@@ -1,3 +1,7 @@
+![Type: Personal](https://img.shields.io/badge/type-personal-blue)
+![Language: Python](https://img.shields.io/badge/language-Python-success)
+![Topic: Scheduling](https://img.shields.io/badge/topic-scheduling-purple)
+
 # Preventive Maintenance Scheduler
 
 A Python-based scheduling engine designed to optimally distribute annual preventive maintenance tasks. Built with a strong emphasis on Object-Oriented Programming (OOP), SOLID principles, and algorithmic heuristics.
@@ -21,14 +25,14 @@ classDiagram
         +id : str
         +name : str
         +duration : float
-        +frequency : str
+        +frequency : int
         +task_id : str
     }
     class Task {
         +id : str
         +name : str
         +subtasks : List[SubTask]
-        +frequency : str
+        +frequency : int
         +get_total_duration() float
     }
     class TaskOccurrence {
@@ -46,7 +50,6 @@ classDiagram
         +tasks : List[Task]
         +weeks : List[Week]
         +plan(scheduler)
-        +export_pdf()
     }
     class TaskSorter {
         +sort(tasks: List[Task]) List[Task]
@@ -55,10 +58,12 @@ classDiagram
         <<interface>>
         +schedule(tasks: List[Task], weeks: List[Week])
     }
+    class WorkloadVarianceEvaluator {
+        +evaluate(planning: Planning) float
+    }
     class ExcelService {
         +read_data(filepath: str)
         +create_calendar(filepath: str, planning: Planning)
-        +create_planning(filepath: str, planning: Planning)
         +export_pdf(excel_file: str, pdf_file: str)
     }
 
@@ -70,15 +75,17 @@ classDiagram
 
     Planning ..> TaskSorter : uses
     Planning ..> TaskScheduler : delegates placement to
+    WorkloadVarianceEvaluator ..> Planning : evaluates
     Planning ..> ExcelService : uses for I/O
     ExcelService ..> SubTask : creates
-    ExcelService ..> Planning : reads/writes/exports
 ```
 
 ## ⚙️ Design Patterns & Extensibility
 
 - **Strategy Pattern:** The `Planning.plan(scheduler)` method accepts any object implementing the `TaskScheduler` interface. This allows seamless swapping between the current `GreedyScheduler` and future implementations (like a `LocalSearchScheduler`).
-- **Single Responsibility Principle (SRP):** `ExcelService` is solely responsible for `pandas`/`openpyxl` interactions. The algorithmic core remains completely agnostic of the data source format.
+- **Single Responsibility Principle (SRP):** 
+  - `ExcelService` is solely responsible for I/O interactions.
+  - `WorkloadVarianceEvaluator` is solely responsible for calculating the fitness of a schedule, keeping the `Planning` domain entity pure and agnostic of business evaluation rules.
 
 ## 🚀 Getting Started
 
@@ -93,6 +100,6 @@ python main.py --input data/maintenance_data.xlsx
 
 ## 🗺️ Roadmap / Future Work
 
+- [x] **Core Architecture:** Set up domain models and decouple evaluation logic.
 - [ ] **Baseline Implementation:** Finalize the `GreedyScheduler` and `TaskSorter` logic.
-- [ ] **Fitness Evaluation:** Implement a variance-based load calculation to quantify the "quality" of a generated schedule.
 - [ ] **Meta-heuristics:** Add a Local Search phase post-greedy placement to escape local optima and further flatten the workload curve.
