@@ -1,7 +1,3 @@
-![Type: Personal](https://img.shields.io/badge/type-personal-blue)
-![Language: Python](https://img.shields.io/badge/language-Python-success)
-![Topic: Scheduling](https://img.shields.io/badge/topic-scheduling-purple)
-
 # Preventive Maintenance Scheduler
 
 A Python-based scheduling engine designed to optimally distribute annual preventive maintenance tasks. Built with a strong emphasis on Object-Oriented Programming (OOP), SOLID principles, and algorithmic heuristics.
