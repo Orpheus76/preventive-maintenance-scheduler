@@ -39,6 +39,7 @@ class Week:
     def add_occurrence(self, occ: TaskOccurrence):
         self.assigned_occurrences.append(occ)
 
+
 class Planning:
     def __init__(self, tasks: List[Task]):
         self.tasks = tasks

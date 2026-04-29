@@ -1,5 +1,6 @@
+import statistics
 from typing import List
-from models import Task, Week, TaskOccurrence
+from models import Task, Week, TaskOccurrence, Planning 
 
 
 class TaskSorter:
@@ -53,3 +54,10 @@ class GreedyScheduler:
 
                 # Move to the next occurrence
                 current_week_num += freq
+
+
+class WorkloadVarianceEvaluator:
+    """
+    Evaluates the fitness of a Planning by computing the statistical variance of the workload across all weeks.
+    A lower variance means a more balanced schedule. 
+    """
