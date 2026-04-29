@@ -1,6 +1,6 @@
 import statistics
 from typing import List
-from models import Task, Week, TaskOccurrence, Planning 
+from .models import Task, Week, TaskOccurrence
 
 
 class TaskSorter:

@@ -1,9 +1,9 @@
 import math
 from typing import List
-from src.models import Planning, Week
+from .models import Planning
 
 
-class WorloadVarianceEvaluator:
+class WorkloadVarianceEvaluator:
     """
     Evaluates the quality of a generated schedule.
     A lower standard deviation indicates a more balanced workload distribution.
