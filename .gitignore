@@ -37,3 +37,7 @@ data/*.xlsx
 data/*.xls
 output/
 *.log
+
+.venv/
+__pycache__/
+*.pyc
