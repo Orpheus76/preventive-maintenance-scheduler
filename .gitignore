@@ -33,8 +33,8 @@ htmlcov/
 Thumbs.db
 
 # === Project-specific ===
-data/*.xlsx
-data/*.xls
+output/*.xlsx
+output/*.xls
 output/
 *.log
 
