@@ -89,11 +89,9 @@ classDiagram
 
 ## 🚀 Getting Started
 
-*(Instructions to be completed once the core is pushed)*
-
 ```bash
-git clone https://github.com/your-username/maintenance-scheduler.git
-cd maintenance-scheduler
+git clone https://github.com/Orpheus76/preventive-maintenance-scheduler
+cd preventive-maintenance-scheduler
 pip install -r requirements.txt
 python main.py --input data/maintenance_data.xlsx
 ```
@@ -101,5 +99,5 @@ python main.py --input data/maintenance_data.xlsx
 ## 🗺️ Roadmap / Future Work
 
 - [x] **Core Architecture:** Set up domain models and decouple evaluation logic.
-- [ ] **Baseline Implementation:** Finalize the `GreedyScheduler` and `TaskSorter` logic.
+- [x] **Baseline Implementation:** Finalize the `GreedyScheduler` and `TaskSorter` logic.
 - [ ] **Meta-heuristics:** Add a Local Search phase post-greedy placement to escape local optima and further flatten the workload curve.
